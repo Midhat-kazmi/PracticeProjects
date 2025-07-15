@@ -21,38 +21,123 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/90 backdrop-blur shadow py-3"
-          : "bg-transparent py-4"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <Link
-  to="/"
-  className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
->
-  midhat  
-</Link>
+    <>
+      <style>{`
+        .navbar {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 50;
+          transition: all 0.3s ease;
+        }
+        .navbar.default {
+          background-color: transparent;
+          padding: 1rem 0;
+        }
+        .navbar.scrolled {
+          background-color: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          padding: 0.75rem 0;
+        }
+        .nav-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .logo {
+          font-size: 1.5rem;
+          font-weight: bold;
+          background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+          display: none;
+        }
+        @media (min-width: 768px) {
+          .nav-links {
+            display: flex;
+            gap: 2rem;
+          }
+        }
+        .nav-links a {
+          color: #374151;
+          text-decoration: none;
+          font-weight: 500;
+        }
+        .nav-links a:hover {
+          color: #2563eb;
+        }
+        .social-icons {
+          display: none;
+        }
+        @media (min-width: 768px) {
+          .social-icons {
+            display: flex;
+            gap: 1rem;
+            color: #2563eb;
+            font-size: 1.25rem;
+          }
+        }
+        .menu-toggle {
+          background-color: rgba(255, 255, 255, 0.8);
+          padding: 0.5rem;
+          border-radius: 9999px;
+          border: none;
+          font-size: 1.5rem;
+          color: #2563eb;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        }
+        .mobile-menu {
+          position: fixed;
+          inset: 0;
+          background-color: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 40;
+        }
+        .mobile-menu a {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #374151;
+          text-decoration: none;
+          margin-bottom: 1rem;
+        }
+        .mobile-menu a:hover {
+          color: #3b82f6;
+        }
+        .mobile-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          padding: 0.5rem;
+          border-radius: 9999px;
+          background-color: #e5e7eb;
+          border: none;
+          font-size: 1.5rem;
+        }
+      `}</style>
 
+      <nav className={`navbar ${isScrolled ? "scrolled" : "default"}`}>
+        <div className="nav-container">
+          <Link to="/" className="logo">midhat</Link>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 items-center">
-          {navItems.map(({ name, path }, key) => (
-            <Link
-              key={key}
-              to={path}
-              className="text-gray-700 hover:text-blue-600 font-medium"
-            >
-              {name}
-            </Link>
-          ))}
-        </div>
+          <div className="nav-links">
+            {navItems.map(({ name, path }, key) => (
+              <Link key={key} to={path}>
+                {name}
+              </Link>
+            ))}
+          </div>
 
-        {/* Socials + Mobile Menu */}
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex gap-4 text-blue-600 text-xl">
+          <div className="social-icons">
             <a href="https://github.com/Midhat-kazmi" target="_blank" rel="noreferrer">
               <FaGithub />
             </a>
@@ -61,39 +146,36 @@ export const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 bg-white/80 shadow rounded-full text-blue-600"
+            className="menu-toggle"
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white/90 backdrop-blur z-40 flex flex-col items-center justify-center">
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute top-6 right-6 p-2 rounded-full bg-gray-200"
-          >
-            <X size={28} />
-          </button>
-          <div className="flex flex-col gap-8 text-2xl font-semibold">
+        {isMenuOpen && (
+          <div className="mobile-menu">
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="mobile-close"
+            >
+              <X size={28} />
+            </button>
             {navItems.map(({ name, path }, key) => (
               <Link
                 key={key}
                 to={path}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-gray-700 hover:text-blue-500"
               >
                 {name}
               </Link>
             ))}
           </div>
-        </div>
-      )}
-    </nav>
+        )}
+      </nav>
+    </>
   );
 };
+export default Navbar;
