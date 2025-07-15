@@ -154,7 +154,15 @@ export const HeroSection = () => {
               My passion lies in turning complex problems into simple, elegant solutions.
             </p>
             <div className="hero-buttons">
-              <button className="resume-btn">Download Resume</button>
+              <a
+                className="resume-btn"
+                href="https://res.cloudinary.com/dgve6ewpr/image/upload/v1752523546/resume_afruwm.jpg"
+                download="Midhat_Resume.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download Resume
+              </a>
               <a href="#projects" className="projects-link">View Projects</a>
             </div>
           </div>
