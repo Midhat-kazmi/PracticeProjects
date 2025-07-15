@@ -25,39 +25,117 @@ export const SkillsSection = () => {
   );
 
   return (
-    <section id="skills" className="w-full bg-gray-50 py-10 px-4">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-2xl font-bold mb-6">
-          Skills & Technologies
-        </h2>
+    <>
+      <style>{`
+        .skills-section {
+          width: 100%;
+          background-color: #f9fafb;
+          padding: 2.5rem 1rem;
+          box-sizing: border-box;
+        }
 
-        <div className="flex justify-center flex-wrap gap-2 mb-6">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-3 py-1 rounded-full text-xs font-medium border transition-all ${
-                activeCategory === category
-                  ? "bg-blue-600 text-white border-blue-600"
-                  : "bg-white text-blue-600 border-gray-300 hover:bg-blue-50"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        .skills-container {
+          max-width: 1120px;
+          margin: 0 auto;
+        }
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {filteredSkills.map((skill) => (
-            <div
-              key={skill.name}
-              className="bg-white rounded-lg text-center text-sm font-medium p-3 shadow hover:shadow-md transition"
-            >
-              {skill.name}
-            </div>
-          ))}
+        .skills-heading {
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 1.5rem;
+        }
+
+        .skills-filters {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .skills-filters button {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.75rem;
+          font-weight: 500;
+          border-radius: 9999px;
+          border: 1px solid #d1d5db;
+          background-color: white;
+          color: #2563eb;
+          cursor: pointer;
+          transition: background 0.3s, color 0.3s, border 0.3s;
+        }
+
+        .skills-filters button.active {
+          background-color: #2563eb;
+          color: white;
+          border-color: #2563eb;
+        }
+
+        .skills-filters button:hover {
+          background-color: #e0f2fe;
+        }
+
+        .skills-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+          .skills-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        @media (min-width: 768px) {
+          .skills-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+
+        .skill-card {
+          background-color: white;
+          border-radius: 0.5rem;
+          text-align: center;
+          font-size: 0.875rem;
+          font-weight: 500;
+          padding: 0.75rem;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+          transition: box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+      `}</style>
+
+      <section id="skills" className="skills-section">
+        <div className="skills-container">
+          <h2 className="skills-heading">Skills & Technologies</h2>
+
+          <div className="skills-filters">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={activeCategory === category ? "active" : ""}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <div className="skills-grid">
+            {filteredSkills.map((skill) => (
+              <div key={skill.name} className="skill-card">
+                {skill.name}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
+

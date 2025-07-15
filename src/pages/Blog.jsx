@@ -2,30 +2,56 @@ import React from "react";
 
 export const Blog = () => {
   return (
-    <section className="min-h-screen py-20 px-4 bg-gray-50">
-      <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">
-          Blog <span className="text-blue-600">Posts</span>
-        </h1>
-        <p className="text-gray-600 mb-12 max-w-xl mx-auto">
-          Coming soon! Here you'll find articles, insights, and tutorials on web
-          development, React, and more.
-        </p>
+    <>
+      <style>{`
+        .blog-section {
+          min-height: 100vh;
+          padding: 5rem 1rem;
+          text-align: center;
+        }
 
-        {/* Placeholder for future blog cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
-            <h2 className="text-xl font-semibold mb-2">Blog Post Title</h2>
-            <p className="text-gray-600 mb-4">
-              Short summary of the blog post to be updated later.
-            </p>
-            <button className="text-blue-600 hover:underline">
-              Read more →
-            </button>
-          </div>
-          {/* Add more blog cards here later */}
+        .blog-container {
+          max-width: 768px;
+          margin: 0 auto;
+        }
+
+        .blog-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 1.5rem;
+          color: #111827;
+        }
+
+        @media (min-width: 768px) {
+          .blog-title {
+            font-size: 3rem;
+          }
+        }
+
+        .blog-highlight {
+          color: #2563eb; /* blue-600 */
+        }
+
+        .blog-text {
+          color: #4b5563; /* gray-600 */
+          font-size: 1rem;
+          line-height: 1.75rem;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+      `}</style>
+
+      <section className="blog-section">
+        <div className="blog-container">
+          <h1 className="blog-title">
+            Blog <span className="blog-highlight">Posts</span>
+          </h1>
+          <p className="blog-text">
+            Coming soon! Here you'll find articles, insights, and tutorials on web
+            development, React, and more.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };

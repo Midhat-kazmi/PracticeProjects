@@ -4,49 +4,116 @@ import { MdEmail } from "react-icons/md";
 
 export const Footer = () => {
   return (
-    <footer className="py-12 px-4 bg-card relative border-t border-gray-200 mt-12 pt-8 flex flex-wrap justify-between items-center gap-6">
-      {/* Left: Copyright */}
-      <p className="text-sm text-gray-500">
-        &copy; {new Date().getFullYear()} Midhat's Portfolio. All rights reserved.
-      </p>
+    <>
+      <style>{`
+        .footer {
+          padding: 3rem 1rem;
+          background-color: #ffffff;
+          border-top: 1px solid #e5e7eb;
+          margin-top: 3rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1.5rem;
+        }
 
-      {/* Center: Let's Connect */}
-      <div className="flex items-center gap-4 text-blue-600 text-xl">
-        <span className="text-sm font-medium text-gray-700">Let’s Connect:</span>
-        <a
-          href="mailto:ksyedamidhat@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-black transition"
-        >
-          <MdEmail />
-        </a>
-        <a
-          href="https://github.com/Midhat-kazmi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-black transition"
-        >
-          <FaGithub />
-        </a>
-        <a
-          href="https://linkedin.com/in/syeda-midhat-kazmi-a5111a339"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-black transition"
-        >
-          <FaLinkedin />
-        </a>
-      </div>
+        .footer p {
+          font-size: 0.875rem;
+          color: #6b7280;
+          margin: 0;
+        }
 
-      {/* Right: Back to Top */}
-      <a
-        href="#hero"
-        className="p-2 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-600 transition-colors"
-        aria-label="Back to top"
-      >
-        <ArrowUp size={20} />
-      </a>
-    </footer>
+        .footer-connect {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 1.25rem;
+          color: #2563eb;
+        }
+
+        .footer-connect span {
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: #374151;
+        }
+
+        .footer-connect a {
+          color: #2563eb;
+          transition: color 0.3s;
+        }
+
+        .footer-connect a:hover {
+          color: #111827;
+        }
+
+        .footer-top-btn {
+          padding: 0.5rem;
+          border-radius: 9999px;
+          background-color: #dbeafe;
+          color: #2563eb;
+          transition: background-color 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .footer-top-btn:hover {
+          background-color: #bfdbfe;
+        }
+
+        @media (max-width: 640px) {
+          .footer {
+            flex-direction: column;
+            text-align: center;
+          }
+        }
+      `}</style>
+
+      <footer className="footer">
+        {/* Left: Copyright */}
+        <p>
+          &copy; {new Date().getFullYear()} Midhat's Portfolio. All rights reserved.
+        </p>
+
+        {/* Center: Socials */}
+        <div className="footer-connect">
+          <span>Let’s Connect:</span>
+          <a
+            href="mailto:ksyedamidhat@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Email"
+          >
+            <MdEmail />
+          </a>
+          <a
+            href="https://github.com/Midhat-kazmi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <FaGithub />
+          </a>
+          <a
+            href="https://linkedin.com/in/syeda-midhat-kazmi-a5111a339"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin />
+          </a>
+        </div>
+
+        {/* Right: Back to Top */}
+        <a
+          href="#hero"
+          className="footer-top-btn"
+          aria-label="Back to top"
+        >
+          <ArrowUp size={20} />
+        </a>
+      </footer>
+    </>
   );
 };
